@@ -117,6 +117,10 @@ These are added to the `/etc/hosts` file on the system to be able to use the dom
 
 #### HTTP is a dead end
 The port `80`, running what seems to be a HTTP server, seems like a promising target to start our assessment. However, when performing further enumeration such as directory busting, it is determined not to be the case so we move on to other ports.
+<img width="2159" height="731" alt="Screenshot 2026-05-28 213402" src="https://github.com/user-attachments/assets/3cd53a51-aab2-48f7-83ec-7068cdc910d4" />
+
+
+
 
 #### SMB Shares
 The port `445` seems to be open. This indicates that there might be network shares present, accessible via the SMB protocol.
@@ -139,6 +143,13 @@ SMB         10.129.234.48   445    DC-JPQ225        [-] cicada.vl\Anonymous: STA
 ```
 $ sudo showmount -e 10.129.234.48
 ```
+
+```
+$ sudo mount -t nfs 10.129.234.48:/profiles /mnt/nfs
+```
+
+<img width="1024" height="1023" alt="Screenshot 2026-05-28 200427clean" src="https://github.com/user-attachments/assets/330c0fd6-f942-4047-995d-bb81ffbfafee" />
+
 
 
 ```
