@@ -3,7 +3,7 @@
 
 
 ## Enumeration
-The host was enumerated using port scanning. 
+Port scanning was performed, to get a overview of the services running on the host. All TCP ports were scanned using NMAP.
 
 #### NMAP
 
@@ -100,36 +100,13 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 205.30 seconds
 ```
 
-Port scanning yields several ports. The the open ports and scan results indicate that the host is a Microsoft Windows Server, and likely a domain controller. 
+Port scanning shows several ports as open. The the open ports and scan results indicate that the host is a Microsoft Windows Server, and likely a domain controller; as port 53,88,389, etc. are open. 
 
-53
-80
-88
-111
-135
-139
-389
-445
-464
-593
-636
-2049
-3268
-3269
-3389
-9389
-49664
-49667
-57572
-57573
-57597
-57678
-58134 
-
-
-We find a domain name and a DN for this domain controller:
+We find a domain name and a DN for this domain controller, during our enumeration of the services on the ports.
+```
 cicada.vl
 DC-JPQ225.cicada.vl
+```
 
 These are added to the `/etc/hosts` file on the system to be able to use the domain name and host name as part of requests against the domain controller.
 
@@ -138,6 +115,8 @@ These are added to the `/etc/hosts` file on the system to be able to use the dom
 #### HTTP is a dead end
 
 #### SMB Shares
+
+The SMB services were enumerated using tools like smbclient and NetExec with no success.
 ```
 smbclient -U Anonymous -L //10.129.234.48 
 session setup failed: NT_STATUS_NOT_SUPPORTED
@@ -145,7 +124,9 @@ session setup failed: NT_STATUS_NOT_SUPPORTED
 
 
 ```
-TODO: add nxc scan
+$ nxc smb 10.129.234.48 -u Anonymous -p ''                              
+SMB         10.129.234.48   445    DC-JPQ225        [*]  x64 (name:DC-JPQ225) (domain:cicada.vl) (signing:True) (SMBv1:None) (NTLM:False)
+SMB         10.129.234.48   445    DC-JPQ225        [-] cicada.vl\Anonymous: STATUS_NOT_SUPPORTED 
 ```
 
 
