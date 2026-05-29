@@ -160,8 +160,7 @@ SMB         DC-JPQ225.cicada.vl 445    DC-JPQ225        SYSVOL          READ    
 
 #### Certificates
 
-As seen from  the network shares, we find a Active Directory Certificate Services Share. This tells us that ADCS is probably used to handle digital certificates. Certipy can be used to enumerate and find vulnerable ADCS configurations.
-Running the tool against the host tells us that Web Enrollment is enabled of HTTP. If we are able to relay authentication from the host to a web enrollment endpoint we will be able to request a certificate for the an attack also known as ESC8. More information about this attack is provided in SpecterOps White paper [https://posts.specterops.io/certified-pre-owned-d95910965cd2](https://posts.specterops.io/certified-pre-owned-d95910965cd2)
+As seen from  the network shares, we find a Active Directory Certificate Services Share. This tells us that ADCS is probably used to handle digital certificates. Certipy can be used to enumerate and find vulnerable ADCS configurations. Running the tool against the host tells us that Web Enrollment is enabled of HTTP. If we are able to relay authentication from the host to a web enrollment endpoint we will be able to request a certificate for the an attack also known as ESC8. More information about this attack is provided in SpecterOps' paper [Certified Pre Owned](https://posts.specterops.io/certified-pre-owned-d95910965cd2)
 ```
 Certificate Authorities
   0
