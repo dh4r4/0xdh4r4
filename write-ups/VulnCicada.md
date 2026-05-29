@@ -140,6 +140,7 @@ SMB         10.129.234.48   445    DC-JPQ225        [-] cicada.vl\Anonymous: STA
 
 
 #### NFS
+Since we were unable to enumerate the shares using anonymous login, we'll try to enumerate any network file systems. Using `showmount` we're able to determine that there is a NFS (`profiles`) that does not seem to require authentication.
 
 ```
 $ sudo showmount -e 10.129.234.48
