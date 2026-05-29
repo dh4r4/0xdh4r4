@@ -1,5 +1,6 @@
 # VulnCicada
 
+This write-up covers the steps required to exploit the CTF Machine VulnCicada on HackTheBox (previously part of VulnLabs). This is a `Medium` challenge, although not requiring as many steps for exploitation as other `Medium` machines require. This machine is part of the HackTheBox `CPTS` preparation track. As part of my preparation I thought this would be a good challenge for my first write-up.
 
 
 ## Enumeration
