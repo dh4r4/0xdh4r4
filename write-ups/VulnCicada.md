@@ -5,6 +5,11 @@
 ## Enumeration
 Port scanning was performed, to get a overview of the services running on the host. All TCP ports were scanned using NMAP. Using the flags `-p-`, `-T4`, `-sC`, `-sV`, we can get a good overview of services running on the TCP ports.
 
+- `-p-`: tells nmap to scan all TCP ports,
+- `-T4`:
+- `-sC`:
+- `-sV`:
+
 #### NMAP
 Port scanning shows several ports as open. The the open ports and scan results indicate that the host is a Microsoft Windows Server, and likely a domain controller; as port 53,88,389, etc. are open. 
 ```
