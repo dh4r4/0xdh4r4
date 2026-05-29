@@ -3,10 +3,10 @@
 
 
 ## Enumeration
-Port scanning was performed, to get a overview of the services running on the host. All TCP ports were scanned using NMAP.
+Port scanning was performed, to get a overview of the services running on the host. All TCP ports were scanned using NMAP. Using the flags `-p-`, `-T4`, `-sC`, `-sV`, we can get a good overview of services running on the TCP ports.
 
 #### NMAP
-
+Port scanning shows several ports as open. The the open ports and scan results indicate that the host is a Microsoft Windows Server, and likely a domain controller; as port 53,88,389, etc. are open. 
 ```
 Nmap scan report for 10.129.234.48
 Host is up (0.032s latency).
@@ -100,8 +100,6 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 205.30 seconds
 ```
 
-Port scanning shows several ports as open. The the open ports and scan results indicate that the host is a Microsoft Windows Server, and likely a domain controller; as port 53,88,389, etc. are open. 
-
 We find a domain name and a DN for this domain controller, during our enumeration of the services on the ports.
 ```
 cicada.vl
@@ -113,9 +111,10 @@ These are added to the `/etc/hosts` file on the system to be able to use the dom
 ## Initial Access
 
 #### HTTP is a dead end
+The port `80`, running what seems to be a HTTP server, seems like a promising target to start our assessment. However, when performing further enumeration such as directory busting, it is determined not to be the case so we move on to other ports.
 
 #### SMB Shares
-
+The port `445` seems to be open. This indicates that there might be network shares present, accessible via the SMB protocol.
 The SMB services were enumerated using tools like smbclient and NetExec with no success.
 ```
 smbclient -U Anonymous -L //10.129.234.48 
@@ -132,7 +131,9 @@ SMB         10.129.234.48   445    DC-JPQ225        [-] cicada.vl\Anonymous: STA
 
 #### NFS
 
-
+```
+$ sudo showmount -e 10.129.234.48
+```
 
 
 ```
